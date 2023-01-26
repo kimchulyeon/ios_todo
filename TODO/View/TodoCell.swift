@@ -2,14 +2,14 @@ import UIKit
 
 class TodoCell: UITableViewCell {
 	//MARK: - properties ============================================
-	private let titleLabel: UILabel = {
+	let titleLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.font = UIFont.boldSystemFont(ofSize: 24)
 		label.text = "title label"
 		return label
 	}()
-	private let statusLabel: UILabel = {
+	let statusLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.font = UIFont.systemFont(ofSize: 18)

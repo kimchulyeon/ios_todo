@@ -1,7 +1,14 @@
 import UIKit
 
 class TodoListTVC: UITableViewController {
+	
 	//MARK: - Properties
+	var todoItems = [TodoItem]() {
+		didSet {
+			print("todo setted")
+			tableView.reloadData()
+		}
+	}
 	let REUSEID = "todoCell"
 
 	lazy var newTodoButton: UIButton = {
@@ -27,6 +34,10 @@ class TodoListTVC: UITableViewController {
 
 		configureTV()
 		layout()
+
+		PostService.shared.fetchAllItems { allItems in
+			self.todoItems = allItems
+		}
 	}
 
 	//MARK: - func ============================================
@@ -66,13 +77,15 @@ class TodoListTVC: UITableViewController {
 
 extension TodoListTVC {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return todoItems.count
 	}
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: REUSEID, for: indexPath) as? TodoCell else { return UITableViewCell() }
+		cell.titleLabel.text = todoItems[indexPath.row].title
+		cell.statusLabel.text = "\(todoItems[indexPath.row].isComplete)"
 		return cell
 	}
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
