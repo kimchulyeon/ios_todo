@@ -33,7 +33,7 @@ class AddNewTodoVC: UIViewController {
 		btn.layer.shadowOffset = CGSize(width: 0, height: 2)
 		btn.layer.shadowRadius = 2
 		btn.layer.shadowOpacity = 0.5
-		btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+		btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
 		btn.setTitle("Add", for: .normal)
 		btn.setTitleColor(.white, for: .normal)
 		btn.addTarget(self, action: #selector(tappedAddButton), for: .touchUpInside)
@@ -105,13 +105,13 @@ class AddNewTodoVC: UIViewController {
 		])
 		// add button
 		NSLayoutConstraint.activate([
-			addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//			addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 			addButton.heightAnchor.constraint(equalToConstant: 50),
+			addButton.widthAnchor.constraint(equalToConstant: 200),
+			addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 		])
 		buttonBottomConstraint = addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15)
 		buttonBottomConstraint.isActive = true
-		addButtonWidthConstraint = addButton.widthAnchor.constraint(equalToConstant: 50)
-		addButtonWidthConstraint.isActive = true
 	}
 	func delegates() {
 		textField.delegate = self
@@ -122,8 +122,12 @@ class AddNewTodoVC: UIViewController {
 	}
 
 	//MARK: - selector ============================================
-	@objc func tappedAddButton() {
-		print("tap:::::::")
+	@objc func tappedAddButton(_ sender: UIButton) {
+		UIView.animate(withDuration: 0.1, animations: {
+			sender.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+		}) { _ in
+			sender.transform = .identity
+		}
 	}
 	@objc func dismissKeyboardWhenTapOutside() {
 		view.endEditing(true)
