@@ -15,6 +15,7 @@
 		6E926E0A298242DD00A68EFB /* TodoListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E926E09298242DD00A68EFB /* TodoListTVC.swift */; };
 		6E926E0C2982448300A68EFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E926E0B2982448300A68EFB /* GoogleService-Info.plist */; };
 		6E926E0E298245B600A68EFB /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E926E0D298245B600A68EFB /* TodoCell.swift */; };
+		6E926E1429824BF400A68EFB /* AddNewTodoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E926E1329824BF400A68EFB /* AddNewTodoVC.swift */; };
 		EBA7064A41F0FB8554F21D83 /* Pods_TODO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300DDCB92D7AD4C8CC0DC3D0 /* Pods_TODO.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		6E926E09298242DD00A68EFB /* TodoListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTVC.swift; sourceTree = "<group>"; };
 		6E926E0B2982448300A68EFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E926E0D298245B600A68EFB /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
+		6E926E1329824BF400A68EFB /* AddNewTodoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTodoVC.swift; sourceTree = "<group>"; };
 		AED98C68707F49EBE4F042EE /* Pods-TODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODO.release.xcconfig"; path = "Target Support Files/Pods-TODO/Pods-TODO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				6E926E09298242DD00A68EFB /* TodoListTVC.swift */,
+				6E926E1329824BF400A68EFB /* AddNewTodoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				6E926E0A298242DD00A68EFB /* TodoListTVC.swift in Sources */,
 				6E926DF62982425C00A68EFB /* AppDelegate.swift in Sources */,
 				6E926DF82982425C00A68EFB /* SceneDelegate.swift in Sources */,
+				6E926E1429824BF400A68EFB /* AddNewTodoVC.swift in Sources */,
 				6E926E0E298245B600A68EFB /* TodoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
