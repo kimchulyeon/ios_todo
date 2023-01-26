@@ -54,7 +54,7 @@ class TodoListTVC: UITableViewController {
 		let vc = AddNewTodoVC()
 		if #available(iOS 15.0, *) {
 			if let presentationController = vc.presentationController as? UISheetPresentationController {
-				presentationController.detents = [.medium(), .large()] /// change to [.medium(), .large()] for a half *and* full screen sheet
+				presentationController.detents = [.large()] /// change to [.medium(), .large()] for a half *and* full screen sheet
 			}
 		} else {
 			// Fallback on earlier versions
