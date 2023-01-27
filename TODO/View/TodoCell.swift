@@ -1,5 +1,9 @@
 import UIKit
 
+protocol DeleteTableViewCellDelegate: AnyObject {
+	func deleteTodo(_ sender: UITableViewCell)
+}
+
 class TodoCell: UITableViewCell {
 	//MARK: - properties ============================================
 	let titleLabel: UILabel = {
@@ -16,6 +20,16 @@ class TodoCell: UITableViewCell {
 		label.text = "status label"
 		return label
 	}()
+	lazy var deleteButton: UIButton = {
+		let btn = UIButton()
+		btn.translatesAutoresizingMaskIntoConstraints = false
+		btn.setImage(UIImage(systemName: "trash"), for: .normal)
+		btn.backgroundColor = .lightGray
+		btn.addTarget(self, action: #selector(tapDeleteButton), for: .touchUpInside)
+		return btn
+	}()
+	
+	var delegate: DeleteTableViewCellDelegate?
 	
 	//MARK: - lifecycle ============================================
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,6 +46,7 @@ class TodoCell: UITableViewCell {
 	func layout() {
 		addSubview(titleLabel)
 		addSubview(statusLabel)
+		contentView.addSubview(deleteButton)
 		
 		// title label
 		NSLayoutConstraint.activate([
@@ -43,8 +58,17 @@ class TodoCell: UITableViewCell {
 			statusLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
 			statusLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
 		])
+		// delete button
+		NSLayoutConstraint.activate([
+			deleteButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+			deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+			deleteButton.widthAnchor.constraint(equalToConstant: 35),
+			deleteButton.heightAnchor.constraint(equalToConstant: 35)
+		])
 	}
-	func configure() {
-		
+	
+	//MARK: - selector ============================================
+	@objc func tapDeleteButton() {
+		delegate?.deleteTodo(self)
 	}
 }

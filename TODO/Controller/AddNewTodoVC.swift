@@ -22,6 +22,7 @@ class AddNewTodoVC: UIViewController {
 		tf.font = .systemFont(ofSize: 24)
 		tf.textColor = .darkGray
 		tf.backgroundColor = UIColor(hue: 0.56, saturation: 0.3, brightness: 0.9, alpha: 0.7)
+		tf.autocapitalizationType = .none
 		return tf
 	}()
 	private lazy var addButton: UIButton = {
@@ -55,21 +56,21 @@ class AddNewTodoVC: UIViewController {
 		tapGestureConfigure()
 	}
 
-	override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
-
-		if #available(iOS 15.0, *) {
-			if let sheetController = presentationController as? UISheetPresentationController {
-				if let position = sheetController.selectedDetentIdentifier {
-					if position == .large {
-						addButtonWidthConstraint.constant = 150
-					} else {
-						addButtonWidthConstraint.constant = 50
-					}
-				}
-			}
-		}
-	}
+//	override func viewWillLayoutSubviews() {
+//		super.viewWillLayoutSubviews()
+//
+//		if #available(iOS 15.0, *) {
+//			if let sheetController = presentationController as? UISheetPresentationController {
+//				if let position = sheetController.selectedDetentIdentifier {
+//					if position == .large {
+//						addButtonWidthConstraint.constant = 150
+//					} else {
+//						addButtonWidthConstraint.constant = 50
+//					}
+//				}
+//			}
+//		}
+//	}
 
 	deinit {
 		NotificationCenter.default.removeObserver(self)
@@ -125,8 +126,14 @@ class AddNewTodoVC: UIViewController {
 	@objc func tappedAddButton(_ sender: UIButton) {
 		UIView.animate(withDuration: 0.1, animations: {
 			sender.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-		}) { _ in
+		}) { [weak self] _ in
 			sender.transform = .identity
+			
+			guard let todo = self?.textField.text else { return }
+			PostService.shared.uploadTodoItem(text: todo) { [weak self] (err, ref) in
+				self?.textField.text = ""
+				self?.dismiss(animated: true)
+			}
 		}
 	}
 	@objc func dismissKeyboardWhenTapOutside() {
