@@ -112,6 +112,7 @@ extension TodoListTVC: DeleteTableViewCellDelegate {
 				self?.fetchList()
 			} else {
 				self?.todoItems.removeAll()
+				self?.fetchList()
 			}
 		}
 	}
