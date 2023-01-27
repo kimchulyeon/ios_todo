@@ -5,7 +5,7 @@ class TodoListTVC: UITableViewController {
 	//MARK: - Properties
 	var todoItems = [TodoItem]() {
 		didSet {
-			print("todo setted")
+			print("todo is changed")
 			tableView.reloadData()
 		}
 	}
@@ -104,9 +104,9 @@ extension TodoListTVC {
 
 extension TodoListTVC: DeleteTableViewCellDelegate {
 	func deleteTodo(_ sender: UITableViewCell) {
-		let index = tableView.indexPath(for: sender)
-		guard let index = index else { return }
+		guard let index = tableView.indexPath(for: sender) else { return }
 		let item = todoItems[index.row].id
+		
 		PostService.shared.deleteTodo(todoId: item) { [weak self] err, ref in
 			if (self?.todoItems.count)! > 1 {
 				self?.fetchList()
